@@ -69,7 +69,7 @@ st.subheader('Message')
 st.write('This dashboard was designed to make it easy for you to find'
              ' your data in one place so you can make decisions fast.\n\n'
              'Made with Python, APIs, and Streamlit.\n\n'
-         'Enjoy!\n\n Michael, Appaloosa Marketing')
+         'Enjoy!\n\n Michael, [Appaloosa Marketing](https://appaloosa-marketing.com)')
 
 
 if st.checkbox('⬅ Developers, Click there for tips!'):
