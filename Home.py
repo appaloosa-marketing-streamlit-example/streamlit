@@ -79,7 +79,7 @@ colored_header(
 )
 
 # AMAZON SALES #
-sellercentral_mtd['Platform'] = 'Amazon'
+sellercentral_mtd['Platform'] = 'Amazon USA'
 sellercentral_mtd.rename(columns={"unitCount":"Units Ordered","orderCount":"Orders","Total Sales":"Revenue"}, inplace=True)
 sellercentral_mtd.drop(columns={"month"}, inplace=True)
 sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue']]
@@ -96,6 +96,9 @@ data = {'Platform': ['Shopify'], 'Revenue': [total_revenue_adjusted]}
 shopify_mtd = pd.DataFrame(data)
 
 mtd_sales = pd.concat([sellercentral_mtd, shopify_mtd], axis=0).fillna('')
+mtd_sales[['Revenue']] = mtd_sales[['Revenue']].applymap(lambda x: f'${x:,.2f}')
+
+
 
 st.table(mtd_sales.style.set_precision(2))
 
