@@ -82,7 +82,8 @@ colored_header(
 sellercentral_mtd['Platform'] = 'Amazon'
 sellercentral_mtd.rename(columns={"unitCount":"Units Ordered","orderCount":"Orders","Total Sales":"Revenue"}, inplace=True)
 sellercentral_mtd.drop(columns={"month"}, inplace=True)
-sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue', 'Orders', 'Units Ordered', 'Avg. Unit Price']]
+sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue']]
+#sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue', 'Orders', 'Units Ordered', 'Avg. Unit Price']]
 #st.table(sellercentral_mtd.style.set_precision(2))
 
 # SHOPIFY #
