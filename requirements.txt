@@ -1,13 +1,16 @@
-
+google~=3.0.0
 PyYAML~=6.0
 requests~=2.28.1
 pandas~=1.5.2
 setuptools~=60.2.0
 httplib2~=0.21.0
-
+google-api-python-client~=2.68.0
 streamlit~=1.16.0
 numpy~=1.23.5
-
+google.api_core==2.11.0
+Pillow~=9.3.0
+boto3~=1.26.39
+botocore~=1.29.39
 statsmodels~=0.13.5
 DateTime~=5.0
 plotly~=5.11.0
@@ -15,10 +18,13 @@ scikit-learn~=1.2.0
 pyactiveresource~=2.2.2
 six~=1.16.0
 PyJWT~=2.6.0
-pip~=22.3.1
+# pip~=22.3.1
 toml~=0.10.2
 wheel~=0.37.1
 lxml~=4.9.1
 tornado~=6.2
 python-dateutil~=2.8.2
 streamlit_extras
+protobuf==3.20.3
+altair<5.0
+streamlit==1.16.0
