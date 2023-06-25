@@ -57,7 +57,7 @@ def color_coding(row):
     return ['background-color: #fffdaf'] * len(
         row) if row.Campaign == "TOTAL" else ['background-color:white'] * len(row)
 
-st.table(google_budgets.style.apply(color_coding, axis=1).set_precision(2))
+st.table(google_budgets.style.apply(color_coding, axis=1).format(precision=2))
 
 colored_header(
     label="Meta Budgets",
@@ -68,4 +68,4 @@ colored_header(
 #Replace n.a with blanks, then create table
 
 
-st.table(meta_budgets.style.apply(color_coding, axis=1).set_precision(2))
+st.table(meta_budgets.style.apply(color_coding, axis=1).format(precision=2))

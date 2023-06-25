@@ -84,7 +84,7 @@ sellercentral_mtd.rename(columns={"unitCount":"Units Ordered","orderCount":"Orde
 sellercentral_mtd.drop(columns={"month"}, inplace=True)
 sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue']]
 #sellercentral_mtd = sellercentral_mtd[['Platform', 'Revenue', 'Orders', 'Units Ordered', 'Avg. Unit Price']]
-#st.table(sellercentral_mtd.style.set_precision(2))
+#st.table(sellercentral_mtd.style.format(precision=2))
 
 # SHOPIFY #
 total_revenue = shopify_report['totalPrice'].astype(float).sum()
@@ -100,7 +100,7 @@ mtd_sales[['Revenue']] = mtd_sales[['Revenue']].applymap(lambda x: f'${x:,.2f}')
 
 
 
-st.table(mtd_sales.style.set_precision(2))
+st.table(mtd_sales.style.format(precision=2))
 
 # ADVERTISING #
 colored_header(
@@ -115,7 +115,7 @@ amazonads_mtd_total = amazonads_mtd[['Channel', 'Cost', 'Revenue', 'Purchases']]
 amazonads_mtd_total = (amazonads_mtd_total.iloc[-1:]).replace('TOTAL', 'Amazon Ads')
 amazonads_mtd_total['ROAS'] = amazonads_mtd_total['Revenue']/amazonads_mtd_total['Cost']
 #amazonads_mtd_total = amazonads_mtd_total.reset_index().
-#st.table(amazonads_mtd_total.style.set_precision(2))
+#st.table(amazonads_mtd_total.style.format(precision=2))
 
 # FB ADS - Ammazon #
 amazon_meta_budgets = amazon_meta_budgets[['Spent', 'Campaign']]
@@ -131,14 +131,14 @@ amazon_meta_budgets = amazon_meta_budgets[['Campaign', 'Spent', 'Revenue', 'Purc
 amazon_meta_budgets = (amazon_meta_budgets.iloc[-1:]).replace('TOTAL', 'Amazon - FB Ads')
 amazon_meta_budgets.rename(columns={"Spent":"Cost", 'Campaign':'Channel'}, inplace=True)
 
-#st.table(amazon_meta_budgets.style.set_precision(2))
+#st.table(amazon_meta_budgets.style.format(precision=2))
 
 
 
 # FB ADS #
 try:
     meta_conversions_mtd.fillna('', inplace=True)
-    #st.table(meta_conversions_mtd.style.apply(axis=1).set_precision(2))
+    #st.table(meta_conversions_mtd.style.apply(axis=1).format(precision=2))
 except:
     pass
 
@@ -151,7 +151,7 @@ try:
 except:
     print('No data for meta_conversions_mtd.')
 
-#st.table(meta_conversions_mtd.style.set_precision(2))
+#st.table(meta_conversions_mtd.style.format(precision=2))
 
 
 # GOOGLE
@@ -161,7 +161,7 @@ if 'Revenue' in google_conversions_mtd.columns and (google_conversions_mtd['Reve
     try:
         google_conversions_mtd = google_conversions_mtd.iloc[-1:].replace('TOTAL', 'Shopify - Google Ads')
         google_conversions_mtd = google_conversions_mtd.rename(columns={'Campaign': 'Channel'})
-    #     st.table(google_conversions_mtd.style.apply(axis=1).set_precision(2))
+    #     st.table(google_conversions_mtd.style.apply(axis=1).format(precision=2))
     #
     except:
         print('No purchase data or something is broken.')
@@ -175,7 +175,7 @@ else:
         google_conversions_mtd = google_conversions_mtd.iloc[-1:].replace('TOTAL', 'Shopify - Google Ads')
         google_conversions_mtd = google_conversions_mtd.drop(columns=['Clicks', 'Impressions'])
         google_conversions_mtd = google_conversions_mtd.rename(columns={'Campaign': 'Channel'})
-        #st.table(google_conversions_mtd.style.set_precision(2))
+        #st.table(google_conversions_mtd.style.format(precision=2))
     except:
         'Something wrong (Line 92)'
 
@@ -196,7 +196,7 @@ amazon_df.iloc[-1, amazon_df.columns.get_loc('Channel')] = 'TOTAL'
 
 # Format as currency
 amazon_df[['Cost', 'Revenue']] = amazon_df[['Cost', 'Revenue']].applymap(lambda x: f'${x:,.2f}')
-st.table(amazon_df.style.apply(color_coding, axis=1).set_precision(2))
+st.table(amazon_df.style.apply(color_coding, axis=1).format(precision=2))
 
 
 st.subheader('Shopify')
@@ -208,5 +208,5 @@ shopify_df.iloc[-1, shopify_df.columns.get_loc('Channel')] = 'TOTAL'
 
 # Format as currency
 shopify_df[['Cost', 'Revenue']] = shopify_df[['Cost', 'Revenue']].applymap(lambda x: f'${x:,.2f}')
-st.table(shopify_df.style.apply(color_coding, axis=1).set_precision(2))
+st.table(shopify_df.style.apply(color_coding, axis=1).format(precision=2))
 

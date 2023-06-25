@@ -130,15 +130,15 @@ colored_header(
     description="Current budgets with month-to-date spend. Take note of current spend to approximate if budgets will spend close to their cap.",
     color_name="green-60",
 )
-st.table(total_budgets.style.apply(color_coding2, axis=1).set_precision(2))
+st.table(total_budgets.style.apply(color_coding2, axis=1).format(precision=2))
 
 
 if st.checkbox('⬅ Click for breakdown of budgets'):
     st.subheader('Meta Budgets')
-    st.table(amazon_meta_budgets.style.set_precision(2))
+    st.table(amazon_meta_budgets.style.format(precision=2))
 
     st.subheader('Amazon Ads Budgets')
-    st.table(budgets.style.set_precision(2))
+    st.table(budgets.style.format(precision=2))
 
 # MTD
 colored_header(
@@ -152,7 +152,7 @@ def color_coding(row):
         row) if row.Campaign == "TOTAL" else ['background-color:white'] * len(row)
 
 st.subheader('Seller Central MTD')
-st.table(sellercentral_mtd.style.set_precision(2))
+st.table(sellercentral_mtd.style.format(precision=2))
 st.subheader('Amazon Ads MTD')
 
 # MTD TOTAL METRICS
@@ -176,7 +176,7 @@ with col4:
     st.metric(label="Clicks",value=mtd_clicks)
 
 if st.checkbox('⬅ Click there for more data'):
-    st.table(amazonads_mtd.style.apply(color_coding, axis=1).set_precision(2))
+    st.table(amazonads_mtd.style.apply(color_coding, axis=1).format(precision=2))
 
 #st.dataframe(google_conversions_mtd.style.format(float))
 
@@ -241,4 +241,4 @@ else:
 
 
 if st.checkbox('⬅ Click there'):
-    st.table(last_month_df.style.apply(color_coding, axis=1).set_precision(2))
+    st.table(last_month_df.style.apply(color_coding, axis=1).format(precision=2))

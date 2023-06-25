@@ -73,7 +73,7 @@ if st.checkbox('⬅ Click there for the data as a table'):
         description="Spend & Revenue Over Time",
         color_name="green-70",
     )
-    st.table(meta_conversions_monthly.style.set_precision(2))
+    st.table(meta_conversions_monthly.style.format(precision=2))
 
 
 
@@ -99,7 +99,7 @@ def color_coding(row):
     return ['background-color: #fffdaf'] * len(
         row) if row.Adset == "TOTAL" else ['background-color:white'] * len(row)
 
-st.table(meta_conversions_mtd.style.apply(color_coding, axis=1).set_precision(2))
+st.table(meta_conversions_mtd.style.apply(color_coding, axis=1).format(precision=2))
 #st.table(meta_conversions_mtd)
 
 
@@ -172,4 +172,4 @@ else:
 
 
 st.subheader('Last Month')
-st.table(last_month_df.style.apply(color_coding, axis=1).set_precision(2))
+st.table(last_month_df.style.apply(color_coding, axis=1).format(precision=2))

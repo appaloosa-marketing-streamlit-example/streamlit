@@ -54,7 +54,7 @@ st.markdown('Revenue tracked by pixels this month. Note: FB cannot track convers
 
 
 st.header('ROAS by Channel')
-st.table(total_rows.style.set_precision(2))
+st.table(total_rows.style.format(precision=2))
 
 #Column Layout & other neat features.
 colored_header(
@@ -84,10 +84,10 @@ def color_coding2(row):
         row) if row.Adset == "TOTAL" else ['background-color:white'] * len(row)
 
 col1.subheader('Google')
-col1.table(google_bottom.style.apply(color_coding, axis=1).set_precision(2))
+col1.table(google_bottom.style.apply(color_coding, axis=1).format(precision=2))
 
 col2.subheader('Meta')
-col2.table(meta_bottom.style.apply(color_coding2, axis=1).set_precision(2))
+col2.table(meta_bottom.style.apply(color_coding2, axis=1).format(precision=2))
 
 
 
